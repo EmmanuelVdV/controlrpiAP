@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 	}
 
 	// sinon le service est up
-	exec("sudo hostapd_cli all_sta | grep \"^[0-9][0-9]:\""), function(error, stdout, stderr) {
+	exec("sudo hostapd_cli all_sta | grep \"^[0-9][0-9]:\"", function(error, stdout, stderr) {
 		if (error) {
 			res.render('error', {err : error.message });
 		}
@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
 		var statut=1;
 		var connectedMAC=stdout.trim();
 		res.render('stopservice', {listConnected : connectedMAC });
-	};
+	});
   });
 });
 
