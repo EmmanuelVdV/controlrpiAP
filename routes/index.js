@@ -19,15 +19,15 @@ router.get('/', function(req, res, next) {
 		}
 
 		// sinon le service est up
-		exec("sudo hostapd_cli all_sta | grep \"^[0-9][0-9]:\"", function(error1, stdout1, stderr1) {
+		exec("sudo hostapd_cli all_sta", function(error1, stdout1, stderr1) {
 		// DEBUG exec("ls", function(error1, stdout1, stderr1) {
 			if (error1) {
 				res.render('error', {err : error1.message });
 			}
 
 			console.log("le message est : "+stdout1.trim());
-			var statut=1;
-			var connectedMAC=stdout1.trim();
+			var reg = new RegExp('[0-9][0-9]:[0-9][0-9]:[0-9][0-9]:[0-9][0-9]');
+			var connectedMAC=stdout1.match(reg).toString();
 			res.render('stopservice', {listConnected : connectedMAC });
 	});
   });
