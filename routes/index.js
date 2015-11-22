@@ -6,11 +6,10 @@ var exec = require('child_process').exec;
 /* GET home page. */
 router.get('/', function(req, res, next) {
  	exec("sudo service hostapd status", function (error, stdout, stderr) {
- 	//DEBUG exec("ls", function (error, stdout, stderr) {
-	  	if (error) { // si erreur => page d'erreur
+	  	/* if (error) { // si erreur => page d'erreur
 	  		res.render('error', { err : error.message });
 	  		return;
-		}
+		} retiré car erreur quand le service ne tourne pas */
 
 
 		// si le message est "failed", le service est arrêté
@@ -29,6 +28,7 @@ router.get('/', function(req, res, next) {
 			}
 
 			console.log("le message est : "+stdout1.trim());
+			// pour l'instant cette regexp ne fonctionne pas
 			var reg = new RegExp('^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$');
 			var connectedMAC=stdout1.match(reg)
 			if (!connectedMAC) {connectedMAC = '';} else {connectedMAC = connectedMAC.toString();}

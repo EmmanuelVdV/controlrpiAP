@@ -1,0 +1,2 @@
+REG exp ne fonctionne pas dans index.js sur les MAC address
+404 sur les pages /startservice et /stopservice => pas de routage du tout au niveau app.js
