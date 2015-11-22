@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
  	//DEBUG exec("ls", function (error, stdout, stderr) {
 	  	if (error) { // si erreur => page d'erreur
 	  		res.render('error', { err : error.message });
+	  		return;
 		}
 
 
@@ -16,6 +17,7 @@ router.get('/', function(req, res, next) {
 		if (stdout.trim().toLowerCase().indexOf('failed') > -1) { // stdout.trim().toLowerCase().includes('failed')
 			statut=0;
 			res.render('startservice');
+			return;
 		}
 
 		// sinon le service est up
@@ -23,11 +25,13 @@ router.get('/', function(req, res, next) {
 		// DEBUG exec("ls", function(error1, stdout1, stderr1) {
 			if (error1) {
 				res.render('error', {err : error1.message });
+				return;
 			}
 
 			console.log("le message est : "+stdout1.trim());
-			var reg = new RegExp('[0-9][0-9]:[0-9][0-9]:[0-9][0-9]:[0-9][0-9]');
-			var connectedMAC=stdout1.match(reg).toString();
+			var reg = new RegExp('^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$');
+			var connectedMAC=stdout1.match(reg)
+			if (!connectedMAC) {connectedMAC = '';} else {connectedMAC = connectedMAC.toString();}
 			res.render('stopservice', {listConnected : connectedMAC });
 	});
   });
