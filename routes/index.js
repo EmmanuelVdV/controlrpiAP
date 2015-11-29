@@ -29,8 +29,8 @@ router.get('/', function(req, res, next) {
 
 			console.log("le message est : "+stdout1.trim());
 			// pour l'instant cette regexp ne fonctionne pas
-			var reg = new RegExp('^([0-9a-fA-F][0-9a-fA-F]:){5}([0-9a-fA-F][0-9a-fA-F])$');
-			var connectedMAC=stdout1.match(reg)
+			var reg = new RegExp('^[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]$');
+			var connectedMAC=stdout1.match(reg);
 			if (!connectedMAC) {connectedMAC = '';} else {connectedMAC = connectedMAC.toString();}
 			res.render('stopservice', {listConnected : connectedMAC });
 	});
