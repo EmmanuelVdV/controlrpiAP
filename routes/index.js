@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var _ = require('underscore');
 
 var exec = require('child_process').exec;
 
@@ -31,7 +32,7 @@ router.get('/', function(req, res, next) {
 			// global flag to get all matches
 			var reg = /[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]:[0-9a-fA-F][0-9a-fA-F]/g;
 			var connectedMAC=stdout1.match(reg);
-			if (!connectedMAC) {connectedMAC = 'No connected device';} else {connectedMAC = connectedMAC.toString();}
+			if (!connectedMAC) {connectedMAC = 'No connected device';} else {connectedMAC = _.uniq(connectedMAC).toString();}
 			res.render('stopservice', {listConnected : connectedMAC });
 	});
   });
