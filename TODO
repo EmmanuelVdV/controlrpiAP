@@ -2,3 +2,8 @@ Ajouter forever et forever-service pour lancer le serveur en tant que service
 npm install -g forever
 npm install -g forever-service
 sudo forever-service install controlrpiAP --script install (à voir si ok de prendre un script du package.json)
+
+Rendre le site accessible depuis l'extérieur
+
+Liste de MAC address dans hostapd
+Traduction MAC address dans le site
