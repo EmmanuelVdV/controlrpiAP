@@ -17,4 +17,4 @@ Web server functionality is independent of the AP SSID and password.
 
 To install, copy all files, run "npm install" to install node dependencies.
 To launch the server, run "npm start".
-Can also be sarted as a service (with forever node package) or provisionned as a service (with forever-service node package) : run "sudo forever-service install controlrpiAP" and "sudo service controlrpiAP start".
+Can also be sarted as a service (with forever node package) or provisionned as a service (with forever-service node package) : run "sudo forever-service install controlrpiAP --script ./bin/www" and "sudo service controlrpiAP start".
