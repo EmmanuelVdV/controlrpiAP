@@ -1,0 +1,20 @@
+Creates a web server that :
+- displays the status of the local wifi Access Point on a raspberry server,
+- displays the list of MAC addresses connected onto the Access Point,
+- enables to start / stop the Access Point remotely (actually start / stops hostapd service on the server).
+
+Example :
+- "raspeberrypi.local" (Raspberry server) with "rpiAP" Access Point operated on the server (pwd BELLATCHIC).
+- http://raspberry.local:3000 (main page for web server) displays the status of the AP with the list of connected devices (if any). The Start / Stop button (depending on current status) enables to start / stop the AP.
+
+
+Acces Point configured with hostapd (/etc/hostapd/hostapd.conf) service.
+Requires /etc/hostapd/hostapd.conf file with options as follow to run the "hostapd_cli all-sta" command :
+- ctrl_interface=/var/run/hostapd
+- ctrl_interface_group=0
+
+Web server functionality is independent of the AP SSID and password.
+
+To install, copy all files, run "npm install" to install node dependencies.
+To launch the server, run "npm start".
+Can also be sarted as a service (with forever node package) or provisionned as a service (with forever-service node package) : run "sudo forever-service install controlrpiAP".
