@@ -4,7 +4,7 @@ Creates a web server that :
 - enables to start / stop the Access Point remotely (actually start / stops hostapd service on the server).
 
 Example :
-- "raspeberrypi.local" (Raspberry server) with "rpiAP" Access Point operated on the server (pwd BELLATCHIC).
+- "raspeberrypi.local" (Raspberry server) with Access Point operated on the server.
 - http://raspberry.local:3000 (main page for web server) displays the status of the AP with the list of connected devices (if any). The Start / Stop button (depending on current status) enables to start / stop the AP.
 
 
